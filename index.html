@@ -138,15 +138,16 @@
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             let tasks = [
-                { id: 1, title: 'Learn Git Basics', status: 'todo' },
-                { id: 2, title: 'Create First PR', status: 'in-progress' },
-                { id: 3, title: 'Review Code', status: 'done' },
-                { id: 4, title: 'Fagoroye Peter' , status: 'in-progress' }
-            ];
+    { id: 1, title: 'Learn Git Basics', status: 'todo', color: '#98FB98' },
+    { id: 2, title: 'Create First PR', status: 'in-progress', color: '#FFD700' }, 
+    { id: 3, title: 'Review Code', status: 'done', color: '#FFA07A' },
+    { id: 4, title: 'Fagoroye Peter', status: 'in-progress', color: '#87CEEB' }
+];
 
             function createTaskElement(task) {
                 const taskDiv = document.createElement('div');
                 taskDiv.className = 'task';
+                taskDiv.style.backgroundColor = task.color; 
                 taskDiv.innerHTML = `
                     <span>${task.title}</span>
                     <div>
@@ -190,12 +191,15 @@
             document.getElementById('addButton').addEventListener('click', function() {
                 const input = document.getElementById('taskInput');
                 const title = input.value.trim();
+                const colors = ['#98FB98', '#FFD700', '#FFA07A', '#87CEEB', '#DDA0DD']; 
+                const randomColor = colors[Math.floor(Math.random() * colors.length)]; 
                 
                 if (title) {
                     const newTask = {
                         id: tasks.length + 1,
                         title: title,
-                        status: 'todo'
+                        status: 'todo',
+                        color: randomColor,
                     };
                     tasks.push(newTask);
                     input.value = '';
